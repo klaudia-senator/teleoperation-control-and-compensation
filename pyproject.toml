@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teleoperation-control-and-compensation"
+version = "1.0.0"
+description = "A hardware-safe robotics teleoperation and planar compensation portfolio demo"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Klaudia Senator"}]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+teleoperation-gui = "teleoperation.gui:main"
+teleoperation-simulator = "teleoperation.simulator.fake_robot:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
